@@ -1,0 +1,106 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    {# First Slide #}
+
+
+    <div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel" style="box-sizing: border-box; padding: 0; margin: 0;">
+        <div class="carousel-inner" style="max-width: 1200px; margin: 0 auto; padding: 50px 40px;
+   width: 100%; position: relative;">
+            <div class="carousel-item">
+                <img src="uploads/image/123-62ede128920d0.jpg" class="d-block w-100" style="width: 1200px; height: 500px;" alt="...">
+
+            </div>
+            <div class="carousel-item active">
+                <img src="uploads/image/8rhhMkXeCp7zka7VlTzIcl4XK6MsHtWgAxZ9oFSx-62eddffc85d2f.jpg" class="d-block w-100" style="width: 1200px; height: 500px;" alt="...">
+
+            </div>
+            <div class="carousel-item">
+                <img src="uploads/image/5da6b26b1f16d-IMG-5470-3057-1607675258-62edda3545d40.jpg" class="d-block w-100" style="width: 1200px; height: 500px;" alt="...">
+
+            </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+
+    {# End Slide #}
+    <div class="bs-example" data-example-id="striped-table">
+        <table class="table table-bordered">
+            <thead>
+            <tr>
+                <th>#</th>
+                <th>Category</th>
+
+            </tr>
+            </thead>
+            <tbody>
+            {% for category in categories %}
+                <tr>
+                    <th scope="row">{{ category.id }}</th>
+                    <td><a href="{{path('productByCat',{'id':category.id})}} ">{{ category.catname }}</a></td>
+
+                    <td>
+                        {#                        <a href="{{ path('todo_details', {'id': product.id}) }} " class='btn btn-success'>View</a>#}
+                        {#                        <a href="{{ path('todo_edit', {'id': product.id}) }}" class='btn btn-default'>Edit</a>#}
+                        {#                        <a href="{{ path('todo_delete', {'id': product.id}) }}" class='btn btn-danger'>Delete</a>#}
+                        <a href="{{path('productByCat',{'id':category.id})}} " class='btn btn-success'>View</a>
+                        <a href="#" class='btn btn-default'>Edit</a>
+                        <a href="{{ path('product_delete', {'id': category.id}) }} "class='btn btn-danger'>Delete</a>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+        <!-- Tab panes -->
+        <div class="tab-content">
+            <div class="tab-pane container active" id="home">
+                <ul class="list-group list-group-horizontal">
+                    <li class="list-group-item">
+                        <div class="container mt-3">
+                            <table class="table table-bordered ">
+                                <tbody>
+
+                                {% for product in products %}
+                                    <tr>
+                                        <td><a href="{{path('product_details',{'id':product.id})}} " class='btn'><img src="{{ asset('uploads/image/' ~ product.productImage)}}" height="200px" width="300px"></a><td>
+                                        <td><h4>{{ product.name }}</h4><div class="row"><div class="col"><span style="font-size: 20px"><strong style="color: red">{{ product.price }}</strong></span></div></div>
+                                            <br><br>
+                                            <div class="row"><div class="col"> <a href="{{path('product_edit',{'id':product.id})}} " class='btn btn-outline-secondary btn-sm '>Edit</a>
+                                                    <a href="{{ path('product_delete', {'id': product.id}) }} "class='btn btn-outline-danger btn-sm'>Delete</a></div></div></td>
+
+                                        <td style="right: 50px; width: 700px"><a>{{ product.description }}</a></td>
+
+
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </li>
+                </ul></div></div></div>
+
+    <div class="container">
+        <ul class="pagination justify-content-center" style="font-size: 200px">
+            <li class="page-item"><a class="page-link" href="javascript:void(0);">Previous</a></li>
+            <li class="page-item"><a class="page-link" href="javascript:void(0);">1</a></li>
+            <li class="page-item"><a class="page-link" href="javascript:void(0);">2</a></li>
+            <li class="page-item"><a class="page-link" href="javascript:void(0);">3</a></li>
+            <li class="page-item"><a class="page-link" href="javascript:void(0);">4</a></li>
+            <li class="page-item"><a class="page-link" href="javascript:void(0);">5</a></li>
+            <li class="page-item"><a class="page-link" href="javascript:void(0);">6</a></li>
+            <li class="page-item"><a class="page-link" href="javascript:void(0);">Next</a></li>
+        </ul>
+
+    </div>
+
+    </body>
+    </html>
+
+{% endblock %}
